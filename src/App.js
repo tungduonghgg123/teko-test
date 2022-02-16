@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { API } from "./services/API";
 import { Table, Tag, Space, Image } from "antd";
+import EditableTable from "./components/EditableTable";
 
 const columns = [
   {
@@ -25,11 +26,13 @@ const columns = [
     title: "Product Name",
     dataIndex: "name",
     key: "name",
+    editable: true,
   },
   {
     title: "SKU",
     dataIndex: "sku",
     key: "sku",
+    editable: true,
   },
   {
     title: "Color",
@@ -40,10 +43,10 @@ const columns = [
 function App() {
   const { data: products } = API.useGetProductsQuery();
   const { data: colors } = API.useGetColorQuery();
-
+  if (!products) return <h1>loading...</h1>;
   return (
     <div className="App">
-      <Table dataSource={products} columns={columns} />;
+      <EditableTable dataSource={products} columns={columns} />;
     </div>
   );
 }
