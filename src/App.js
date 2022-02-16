@@ -1,8 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { API } from "./services/API";
 
 function App() {
+  const { data: products } = API.useGetProductsQuery();
+  const { data: colors } = API.useGetColorQuery();
+
   return (
     <div className="App">
       <header className="App-header">
