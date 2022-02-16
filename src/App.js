@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { API } from "./services/API";
-import { Table, Tag, Space } from "antd";
+import { Table, Tag, Space, Image } from "antd";
 
 const columns = [
   {
@@ -19,6 +19,7 @@ const columns = [
     title: "Product Image",
     dataIndex: "image",
     key: "image",
+    render: (url) => <Image width={200} src={url} />,
   },
   {
     title: "Product Name",
