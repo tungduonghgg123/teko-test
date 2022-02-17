@@ -4,6 +4,7 @@ import "./App.css";
 import { API } from "./services/API";
 import { Table, Tag, Space, Image } from "antd";
 import EditableTable from "./components/EditableTable";
+import ColorSelect from "./components/ColorSelect";
 
 const columns = [
   {
@@ -38,11 +39,13 @@ const columns = [
     title: "Color",
     dataIndex: "color",
     key: "color",
+    render: (colorKey) => (
+      <ColorSelect value={colorKey} handleChange={() => {}} />
+    ),
   },
 ];
 function App() {
   const { data: products } = API.useGetProductsQuery();
-  const { data: colors } = API.useGetColorQuery();
   if (!products) return <h1>loading...</h1>;
   return (
     <div className="App">
