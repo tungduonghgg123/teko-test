@@ -29,12 +29,14 @@ class EditableTable extends React.Component {
         dataIndex: "name",
         key: "name",
         editable: true,
+        length: 50,
       },
       {
         title: "SKU",
         dataIndex: "sku",
         key: "sku",
         editable: true,
+        length: 20,
       },
       {
         title: "Color",
@@ -100,6 +102,7 @@ class EditableTable extends React.Component {
           dataIndex: col.dataIndex,
           title: col.title,
           handleSave: this.handleSave,
+          length: col.length,
         }),
       };
     });

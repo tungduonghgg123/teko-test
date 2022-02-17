@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Button, Popconfirm, Form } from "antd";
+import { Input, Form } from "antd";
 const EditableContext = React.createContext(null);
 const EditableCell = ({
   title,
@@ -8,6 +8,7 @@ const EditableCell = ({
   dataIndex,
   record,
   handleSave,
+  length,
   ...restProps
 }) => {
   const [editing, setEditing] = useState(false);
@@ -49,6 +50,10 @@ const EditableCell = ({
           {
             required: true,
             message: `${title} is required.`,
+          },
+          {
+            max: length,
+            message: `max length is ${length} characters`,
           },
         ]}
       >
