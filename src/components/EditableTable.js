@@ -105,7 +105,10 @@ class EditableTable extends React.Component {
     });
     return (
       <div>
-        <ConfirmModal getUpdatedProducts={this.getUpdatedProducts} />
+        <ConfirmModal
+          getUpdatedProducts={this.getUpdatedProducts}
+          onSubmit={this.clearUpdatedProductIds}
+        />
         <Table
           components={components}
           rowClassName={() => "editable-row"}

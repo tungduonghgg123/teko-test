@@ -5,7 +5,7 @@ import { API } from "../services/API";
 import FieldValue from "./FieldValue";
 const { Text } = Typography;
 
-const ConfirmModal = ({ getUpdatedProducts }) => {
+const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const { data: colors } = API.useGetColorQuery();
@@ -18,6 +18,7 @@ const ConfirmModal = ({ getUpdatedProducts }) => {
     setTimeout(() => {
       setVisible(false);
       setConfirmLoading(false);
+      onSubmit();
     }, 2000);
   };
 
