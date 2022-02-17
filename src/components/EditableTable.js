@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Button, Popconfirm, Form, Image } from "antd";
+import React from "react";
+import { Table, Image } from "antd";
 import EditableCell from "./EditableCell";
 import EditableRow from "./EditableRow";
 import ColorSelect from "./ColorSelect";
-import { UploadOutlined } from "@ant-design/icons";
+import ConfirmModal from "./ConfirmModal";
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
@@ -68,7 +68,7 @@ class EditableTable extends React.Component {
     this.updatedProductIds.add(row.id);
   };
   clearUpdatedProductIds = () => this.updatedProductIds.clear();
-  onSubmit = () => {
+  getUpdatedProducts = () => {
     const updatedProducts = [];
     this.updatedProductIds.forEach((id) =>
       // product ids is a sequence starting from 1
@@ -77,6 +77,7 @@ class EditableTable extends React.Component {
     // Open the modal
     // clear the ids list if submitted
     console.log(updatedProducts);
+    return updatedProducts;
   };
   render() {
     const { dataSource } = this.state;
@@ -104,16 +105,7 @@ class EditableTable extends React.Component {
     });
     return (
       <div>
-        <Button
-          onClick={this.onSubmit}
-          type="primary"
-          style={{
-            marginBottom: 16,
-          }}
-          icon={<UploadOutlined />}
-        >
-          Submit
-        </Button>
+        <ConfirmModal getUpdatedProducts={this.getUpdatedProducts} />
         <Table
           components={components}
           rowClassName={() => "editable-row"}
