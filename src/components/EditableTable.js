@@ -76,7 +76,7 @@ class EditableTable extends React.Component {
   };
   handleSave = (row) => {
     const newData = [...this.state.dataSource];
-    const index = newData.findIndex((item) => row.key === item.key);
+    const index = newData.findIndex((item) => row.id === item.id);
     const item = newData[index];
     newData.splice(index, 1, { ...item, ...row });
     this.setState({
