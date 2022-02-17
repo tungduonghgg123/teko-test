@@ -1,11 +1,54 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Button, Popconfirm, Form } from "antd";
+import { Table, Input, Button, Popconfirm, Form, Image } from "antd";
 import EditableCell from "./EditableCell";
 import EditableRow from "./EditableRow";
+import ColorSelect from "./ColorSelect";
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
-    this.columns = this.props.columns;
+    this.columns = [
+      {
+        title: "ID",
+        dataIndex: "id",
+        key: "id",
+      },
+      {
+        title: "Error Description",
+        dataIndex: "errorDescription",
+        key: "errorDescription",
+      },
+      {
+        title: "Product Image",
+        dataIndex: "image",
+        key: "image",
+        render: (url) => <Image width={200} src={url} />,
+      },
+      {
+        title: "Product Name",
+        dataIndex: "name",
+        key: "name",
+        editable: true,
+      },
+      {
+        title: "SKU",
+        dataIndex: "sku",
+        key: "sku",
+        editable: true,
+      },
+      {
+        title: "Color",
+        dataIndex: "color",
+        key: "color",
+        render: (colorKey, record) => (
+          <ColorSelect
+            value={colorKey}
+            handleChange={(newColorId) =>
+              this.handleSave({ ...record, color: newColorId })
+            }
+          />
+        ),
+      },
+    ];
     this.state = {
       dataSource: this.props.dataSource,
       count: 2,
