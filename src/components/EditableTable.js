@@ -56,25 +56,6 @@ class EditableTable extends React.Component {
     };
   }
 
-  handleDelete = (key) => {
-    const dataSource = [...this.state.dataSource];
-    this.setState({
-      dataSource: dataSource.filter((item) => item.key !== key),
-    });
-  };
-  handleAdd = () => {
-    const { count, dataSource } = this.state;
-    const newData = {
-      key: count,
-      name: `Edward King ${count}`,
-      age: "32",
-      address: `London, Park Lane no. ${count}`,
-    };
-    this.setState({
-      dataSource: [...dataSource, newData],
-      count: count + 1,
-    });
-  };
   handleSave = (row) => {
     const newData = [...this.state.dataSource];
     const index = newData.findIndex((item) => row.id === item.id);
