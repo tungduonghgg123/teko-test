@@ -52,8 +52,8 @@ class EditableTable extends React.Component {
     ];
     this.state = {
       dataSource: this.props.dataSource,
-      count: 2,
     };
+    this.updatedProductIds = new Set();
   }
 
   handleSave = (row) => {
@@ -64,8 +64,20 @@ class EditableTable extends React.Component {
     this.setState({
       dataSource: newData,
     });
+    // record updated ids
+    this.updatedProductIds.add(row.id);
   };
-
+  clearUpdatedProductIds = () => this.updatedProductIds.clear();
+  onSubmit = () => {
+    const updatedProducts = [];
+    this.updatedProductIds.forEach((id) =>
+      // product ids is a sequence starting from 1
+      updatedProducts.push(this.state.dataSource[id - 1])
+    );
+    // Open the modal
+    // clear the ids list if submitted
+    console.log(updatedProducts);
+  };
   render() {
     const { dataSource } = this.state;
     const components = {
@@ -93,7 +105,7 @@ class EditableTable extends React.Component {
     return (
       <div>
         <Button
-          //   onClick={this.handleAdd}
+          onClick={this.onSubmit}
           type="primary"
           style={{
             marginBottom: 16,
