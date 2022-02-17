@@ -26,7 +26,7 @@ const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
     console.log("Clicked cancel button");
     setVisible(false);
   };
-
+  if (!colors) return <h1>loading...</h1>;
   return (
     <>
       <Button
@@ -45,6 +45,8 @@ const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
         onOk={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
+        style={{ height: "calc(100vh - 200px)" }}
+        bodyStyle={{ overflow: "scroll" }}
       >
         {getUpdatedProducts().map((product) => {
           return (
@@ -59,7 +61,7 @@ const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
                 <FieldValue field="SKU" value={product.sku} />
                 <FieldValue
                   field="Color"
-                  value={colors[product.color - 1].name}
+                  value={colors[product.color - 1]?.name}
                 />
               </Col>
             </Row>
