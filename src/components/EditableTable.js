@@ -3,6 +3,7 @@ import { Table, Input, Button, Popconfirm, Form, Image } from "antd";
 import EditableCell from "./EditableCell";
 import EditableRow from "./EditableRow";
 import ColorSelect from "./ColorSelect";
+import { UploadOutlined } from "@ant-design/icons";
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
@@ -111,13 +112,14 @@ class EditableTable extends React.Component {
     return (
       <div>
         <Button
-          onClick={this.handleAdd}
+          //   onClick={this.handleAdd}
           type="primary"
           style={{
             marginBottom: 16,
           }}
+          icon={<UploadOutlined />}
         >
-          Add a row
+          Submit
         </Button>
         <Table
           components={components}
