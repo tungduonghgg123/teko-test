@@ -67,11 +67,11 @@ class EditableTable extends React.Component {
     const index = newData.findIndex((item) => row.id === item.id);
     const item = newData[index];
     newData.splice(index, 1, { ...item, ...row });
+    // record updated ids
+    this.updatedProductIds.add(row.id);
     this.setState({
       dataSource: newData,
     });
-    // record updated ids
-    this.updatedProductIds.add(row.id);
   };
   clearUpdatedProductIds = () => this.updatedProductIds.clear();
   getUpdatedProducts = () => {
