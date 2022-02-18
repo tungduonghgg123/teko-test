@@ -35,7 +35,9 @@ const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
         onClick={showModal}
         type="primary"
         style={{
-          marginBottom: 16,
+          position: "sticky",
+          top: 0,
+          zIndex: 99,
         }}
         icon={<UploadOutlined />}
         disabled={updatedProducts.length === 0}
