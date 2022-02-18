@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Image } from "antd";
+import { Table, Image, Skeleton, Empty } from "antd";
 import EditableCell from "./EditableCell";
 import EditableRow from "./EditableRow";
 import ColorSelect from "./ColorSelect";
@@ -57,7 +57,11 @@ class EditableTable extends React.Component {
     };
     this.updatedProductIds = new Set();
   }
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.dataSource !== this.props.dataSource) {
+      this.setState({ dataSource: this.props.dataSource });
+    }
+  }
   handleSave = (row) => {
     const newData = [...this.state.dataSource];
     const index = newData.findIndex((item) => row.id === item.id);
@@ -118,6 +122,18 @@ class EditableTable extends React.Component {
           bordered
           dataSource={dataSource}
           columns={columns}
+          locale={{
+            emptyText: (
+              <Skeleton
+                paragraph={{
+                  rows: 5,
+                  width: "100%",
+                }}
+                title={false}
+                active={true}
+              />
+            ),
+          }}
         />
       </div>
     );

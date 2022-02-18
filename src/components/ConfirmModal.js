@@ -3,12 +3,14 @@ import { Modal, Button, Image, Row, Col, Typography } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { API } from "../services/API";
 import FieldValue from "./FieldValue";
+import SkeletonButton from "antd/lib/skeleton/Button";
 const { Text } = Typography;
 
 const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const { data: colors } = API.useGetColorQuery();
+  const updatedProducts = getUpdatedProducts();
   const showModal = () => {
     setVisible(true);
   };
@@ -26,7 +28,7 @@ const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
     console.log("Clicked cancel button");
     setVisible(false);
   };
-  if (!colors) return <h1>loading...</h1>;
+  if (!colors) return <SkeletonButton active size="large" />;
   return (
     <>
       <Button
@@ -36,6 +38,7 @@ const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
           marginBottom: 16,
         }}
         icon={<UploadOutlined />}
+        disabled={updatedProducts.length === 0}
       >
         Submit
       </Button>
@@ -48,7 +51,7 @@ const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
         style={{ height: "calc(100vh - 200px)" }}
         bodyStyle={{ overflow: "scroll" }}
       >
-        {getUpdatedProducts().map((product) => {
+        {updatedProducts.map((product) => {
           return (
             <Row key={product.id}>
               <Col span={6}>
