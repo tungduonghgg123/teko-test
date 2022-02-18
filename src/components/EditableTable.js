@@ -122,6 +122,7 @@ class EditableTable extends React.Component {
           bordered
           dataSource={dataSource}
           columns={columns}
+          rowKey={(record) => record.id}
           locale={{
             emptyText: (
               <Skeleton
