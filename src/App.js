@@ -1,16 +1,14 @@
 import React from "react";
 import "./App.css";
 import { API } from "./services/API";
-import EditableTable from "./components/EditableTable";
-import BackToTopButton from "./components/BackToTopButton";
+import { Table, BackToTopButton } from "./components";
 
 function App() {
   const { data: products } = API.useGetProductsQuery();
 
   return (
     <div className="App">
-      <EditableTable dataSource={products} />
-
+      <Table dataSource={products} />
       <BackToTopButton />
     </div>
   );

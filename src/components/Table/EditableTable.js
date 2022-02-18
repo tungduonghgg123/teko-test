@@ -1,9 +1,8 @@
 import React from "react";
-import { Table, Image, Skeleton, Empty } from "antd";
+import { Table, Image, Skeleton } from "antd";
 import EditableCell from "./EditableCell";
 import EditableRow from "./EditableRow";
-import ColorSelect from "./ColorSelect";
-import ConfirmModal from "./ConfirmModal";
+import { ColorSelect, ConfirmModal } from "../index";
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
@@ -83,9 +82,6 @@ class EditableTable extends React.Component {
       // product ids is a sequence starting from 1
       updatedProducts.push(this.state.dataSource[id - 1])
     );
-    // Open the modal
-    // clear the ids list if submitted
-    console.log(updatedProducts);
     return updatedProducts;
   };
   render() {
