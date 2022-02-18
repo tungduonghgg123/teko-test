@@ -48,7 +48,6 @@ const ConfirmModal = ({ getUpdatedProducts, onSubmit }) => {
         onOk={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
-        style={{ height: "calc(100vh - 200px)" }}
         bodyStyle={{ overflow: "scroll" }}
       >
         {updatedProducts.map((product) => {

@@ -56,7 +56,10 @@
   border: 1px solid #434343;
 }
 .ant-modal-content {
-  max-height: 50%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
+}
+.ant-modal {
+  height: 100%;
 }
