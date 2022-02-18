@@ -73,7 +73,10 @@ class EditableTable extends React.Component {
       dataSource: newData,
     });
   };
-  clearUpdatedProductIds = () => this.updatedProductIds.clear();
+  clearUpdatedProductIds = () => {
+    this.updatedProductIds.clear();
+    this.forceUpdate();
+  };
   getUpdatedProducts = () => {
     const updatedProducts = [];
     this.updatedProductIds.forEach((id) =>
